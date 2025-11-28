@@ -1,0 +1,24 @@
+{
+  "name": "movieshelf-app",
+  "version": "1.0.0",
+  "description": "MovieShelf Web Application using Express and Materialize CSS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "Nodejs",
+    "Express",
+    "Materialize",
+    "HTML",
+    "JavaScript",
+    "CSS",
+    "Movies"
+  ],
+  "author": "Name",
+  "license": "ISC",
+  "dependencies": {
+    "express": "5.1.0"
+  }
+}
+
