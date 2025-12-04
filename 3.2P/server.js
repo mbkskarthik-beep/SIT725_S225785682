@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware
-app.use(express.json()); // <-- Needed for POST JSON data
+
+app.use(express.json()); 
 app.use(express.static(__dirname + '/public'));
 
 let movies = [
@@ -36,16 +36,16 @@ let movies = [
     }
 ];
 
-// GET: Fetch all movies
+
 app.get('/api/movies', (req, res) => {
     res.json(movies);
 });
 
-// POST: Add new movie
+
 app.post('/api/movies', (req, res) => {
     const newMovie = req.body;
 
-    // Generate unique ID
+    
     newMovie.id = movies.length ? movies[movies.length - 1].id + 1 : 1;
 
     movies.push(newMovie);
