@@ -1,5 +1,6 @@
 let allMovies = [];
 
+
 const getMovies = () => {
     fetch('/api/movies')
         .then(res => res.json())
@@ -8,7 +9,8 @@ const getMovies = () => {
             updateCards(allMovies);
         })
         .catch(err => console.error("Fetch Error:", err));
-}
+};
+
 
 const updateCards = (movies) => {
     const section = document.getElementById('card-section');
@@ -25,7 +27,7 @@ const updateCards = (movies) => {
                 <div class="card-content">
                     <p><strong>Genre:</strong> ${movie.genre}</p>
                 </div>
-                <div class="extra-info" id="extra-${movie.id}">
+                <div class="extra-info" id="extra-${movie.id}" style="display:none;">
                     <p><strong>Director:</strong> ${movie.director}</p>
                     <p><strong>Duration:</strong> ${movie.duration} min</p>
                     <p>${movie.description}</p>
@@ -34,15 +36,59 @@ const updateCards = (movies) => {
         </div>`;
     });
 
+    
     $('.poster').off().on('click', function () {
         const id = $(this).data('id');
         $(`#extra-${id}`).slideToggle(250);
     });
-}
+};
 
-document.addEventListener('DOMContentLoaded', function () {
+
+const addMovie = (movie) => {
+    fetch("/api/movies", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(movie),
+    })
+        .then(res => res.json())
+        .then(() => {
+            M.toast({ html: "Movie Added!" });
+
+            $('#addMovieModal').modal('close');
+            document.getElementById("movieForm").reset();
+
+            getMovies(); // refresh movie cards
+        })
+        .catch(err => console.error("Add Movie Error:", err));
+};
+
+document.addEventListener("DOMContentLoaded", function () {
     console.log("MovieShelf Loaded");
+
+
+    $('.modal').modal();
+
     getMovies();
-    setupNavScrolling()
-    setupAboutBox()
+
+   
+    document.getElementById("addMovieBtn").addEventListener("click", () => {
+        $('#addMovieModal').modal('open');
+    });
+
+    // Submit Add Movie form
+    document.getElementById("movieForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const movie = {
+            
+            title: document.getElementById("title").value,
+            poster: document.getElementById("poster").value,
+            genre: document.getElementById("genre").value,
+            director: document.getElementById("director").value,
+            duration: document.getElementById("duration").value,
+            description: document.getElementById("description").value
+        };
+
+        addMovie(movie);
+    });
 });

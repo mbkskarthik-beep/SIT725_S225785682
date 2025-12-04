@@ -110,3 +110,10 @@ footer {
         font-size: 1.1rem;
     }
 }
+#addMovieBtn {
+    color: rgb(255, 255, 255) !important;
+    font-weight: 600;
+}
+.modal-content, .modal-content label, .modal-content input {
+    color: #000 !important;
+}

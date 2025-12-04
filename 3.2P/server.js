@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middleware
+app.use(express.json()); // <-- Needed for POST JSON data
 app.use(express.static(__dirname + '/public'));
-
 
 let movies = [
     {
@@ -26,7 +27,7 @@ let movies = [
     },
     {
         id: 3,
-        title: "Dark knight",
+        title: "Dark Knight",
         director: "Christopher Nolan",
         poster: "images/m3.jpg",
         description: "A super hero saves his land.",
@@ -35,9 +36,20 @@ let movies = [
     }
 ];
 
-
+// GET: Fetch all movies
 app.get('/api/movies', (req, res) => {
     res.json(movies);
+});
+
+// POST: Add new movie
+app.post('/api/movies', (req, res) => {
+    const newMovie = req.body;
+
+    // Generate unique ID
+    newMovie.id = movies.length ? movies[movies.length - 1].id + 1 : 1;
+
+    movies.push(newMovie);
+    res.json({ message: "Movie added successfully!", movie: newMovie });
 });
 
 app.listen(port, () => {
