@@ -1,0 +1,24 @@
+{
+  "name": "6.1c",
+  "version": "1.0.0",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.0.2"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^11.7.5",
+    "supertest": "^7.1.4"
+  }
+}
