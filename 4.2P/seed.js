@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
-const User = require("../server");   
+const User = require("./models/user");
 
 mongoose.connect("mongodb://localhost:27017/myprojectDB");
+
 mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB for seeding!");
 });
 
 const sampleUser = new User({
   username: "jack",
-  email: "mbkskarthik",
+  email: "mbkskarthik@gmail.com",
   age: 28,
   isActive: true,
   isVerified: false,
@@ -21,7 +22,7 @@ sampleUser
     console.log("Sample user saved!");
     mongoose.connection.close();
   })
-  .catch((err) => {
-    console.error(err);
+  .finally(() => {
     mongoose.connection.close();
   });
+
