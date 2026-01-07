@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.json());
 
-// Routes
+
 const bookRoutes = require("./routes/bookroute");
 app.use("/", bookRoutes);
 

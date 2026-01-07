@@ -1,4 +1,4 @@
-// Mock Book Service (NO DATABASE)
+
 
 const books = [
   { id: "b1", title: "Test Book 1", author: "Author A" },
