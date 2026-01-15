@@ -2,8 +2,8 @@ const request = require("supertest");
 const { expect } = require("chai");
 const app = require("../app");
 
-// Simple calculation function for testing
-const countBooks = (books) => books.length;
+
+const { countBooks } = require("../utils/bookUtils");
 
 describe("Book API Tests", () => {
 

@@ -1,5 +1,5 @@
 {
-  "name": "6.1c",
+  "name": "6.2C",
   "version": "1.0.0",
   "main": "app.js",
   "directories": {
@@ -17,8 +17,8 @@
     "mongoose": "^9.0.2"
   },
   "devDependencies": {
-    "chai": "^4.3.7",
+    "chai": "^4.5.0",
     "mocha": "^11.7.5",
-    "supertest": "^7.1.4"
+    "supertest": "^7.2.2"
   }
 }

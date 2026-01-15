@@ -1,17 +1,17 @@
-// /models/bookModel.js
+
 const mongoose = require('mongoose');
 
 const BookSchema = new mongoose.Schema({
-  id: { type: String, required: true, unique: true }, // b1, b2,...
+  id: { type: String, required: true, unique: true }, 
   title: { type: String, required: true },
   author: { type: String, required: true },
   year: { type: Number },
   genre: { type: String },
   summary: { type: String },
-  price: { type: mongoose.Schema.Types.Decimal128, required: true } // AUD price stored as Decimal128
+  price: { type: mongoose.Schema.Types.Decimal128, required: true } 
 });
 
-// Ensure Decimal128 is converted to a number when JSON serialized
+
 BookSchema.set('toJSON', {
   transform: (doc, ret) => {
     if (ret.price && typeof ret.price === 'object' && ret.price.toString) {
